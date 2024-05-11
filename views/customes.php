@@ -45,10 +45,28 @@ require_once('components/_head.php');
                 </thead>
                 <tbody>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Ace Batingal</td>
+                    <td>0912334440</td>
+                    <td>ace@gmail.com</td>
+                    <td><button class="btn btn-info">Edit</button></td>
+                  </tr>
+                  <tr>
+                    <td>Edlian Baran</td>
+                    <td>091244444</td>
+                    <td>baran@gmail.com</td>
+                    <td><button class="btn btn-info">Edit</button></td>
+                  </tr>
+                  <tr>
+                    <td>John Doe</td>
+                    <td>09123444121</td>
+                    <td>doe@gmail.com</td>
+                    <td><button class="btn btn-info">Edit</button></td>
+                  </tr>
+                  <tr>
+                    <td>Werner Keanu</td>
+                    <td>09123344220</td>
+                    <td>werner@gmail.com</td>
+                    <td><button class="btn btn-info">Edit</button></td>
                   </tr>
                 </tbody>
               </table>

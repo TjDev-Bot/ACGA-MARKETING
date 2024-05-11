@@ -106,8 +106,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hrm.php" style="color: #fff;">
-              <i class="fas fa-user-tie text-primary"></i> HRM
+            <a class="nav-link" href="inventory.php" style="color: #fff;">
+              <i class="fas fa-warehouse text-primary"></i> Inventory
             </a>
           </li>
           <li class="nav-item">
