@@ -1,9 +1,3 @@
-<?php
-session_start();
-include('config/config.php');
-include('config/checklogin.php');
-check_login();
-?>
 <!DOCTYPE html>
 <html>
 
@@ -31,17 +25,6 @@ check_login();
     </style>
 </head>
 </style>
-<?php
-$order_code = $_GET['order_code'];
-$ret = "SELECT * FROM  rpos_orders WHERE order_code = '$order_code'";
-$stmt = $mysqli->prepare($ret);
-$stmt->execute();
-$res = $stmt->get_result();
-while ($order = $res->fetch_object()) {
-    $total = ($order->prod_price * $order->prod_qty);
-
-?>
-
     <body>
         <div class="container">
             <div class="row">
@@ -60,10 +43,10 @@ while ($order = $res->fetch_object()) {
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                             <p>
-                                <em>Date: <?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></em>
+                                <em>Date: </em>
                             </p>
                             <p>
-                                <em class="text-success">Receipt #: <?php echo $order->order_code; ?></em>
+                                <em class="text-success">Receipt #: </em>
                             </p>
                         </div>
                     </div>
@@ -83,11 +66,11 @@ while ($order = $res->fetch_object()) {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="col-md-9"><em> <?php echo $order->prod_name; ?> </em></h4>
+                                    <td class="col-md-9"><em>  </em></h4>
                                     </td>
-                                    <td class="col-md-1" style="text-align: center"> <?php echo $order->prod_qty; ?></td>
-                                    <td class="col-md-1 text-center">$<?php echo $order->prod_price; ?></td>
-                                    <td class="col-md-1 text-center">$<?php echo $total; ?></td>
+                                    <td class="col-md-1" style="text-align: center"> </td>
+                                    <td class="col-md-1 text-center">$</td>
+                                    <td class="col-md-1 text-center">$</td>
                                 </tr>
                                 <tr>
                                     <td>   </td>
@@ -102,7 +85,7 @@ while ($order = $res->fetch_object()) {
                                     </td>
                                     <td class="text-center">
                                         <p>
-                                            <strong>$<?php echo $total; ?></strong>
+                                            <strong>$</strong>
                                         </p>
                                         <p>
                                             <strong>14%</strong>
@@ -116,7 +99,7 @@ while ($order = $res->fetch_object()) {
                                         <h4><strong>Total: </strong></h4>
                                     </td>
                                     <td class="text-center text-danger">
-                                        <h4><strong>$<?php echo $total; ?></strong></h4>
+                                        <h4><strong>$</strong></h4>
                                     </td>
                                 </tr>
                             </tbody>
@@ -142,4 +125,3 @@ while ($order = $res->fetch_object()) {
         $('body').html(restorepage);
     }
 </script>
-<?php } ?>

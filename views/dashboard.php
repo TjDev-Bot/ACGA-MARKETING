@@ -1,7 +1,5 @@
 <?php
-
 require_once('components/_head.php');
-require_once('components/_analytics.php');
 ?>
 
 <body>

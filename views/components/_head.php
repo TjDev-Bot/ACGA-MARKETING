@@ -54,19 +54,10 @@
         </script>
 
     <?php } ?>
-    <script>
-        function getCustomer(val) {
-            $.ajax({
-
-                type: "POST",
-                url: "customer_ajax.php",
-                data: 'custName=' + val,
-                success: function(data) {
-                    //alert(data);
-                    $('#customerID').val(data);
-                }
-            });
-
-        }
-    </script>
+    <?php
+        include('../assets/db/config.php');
+        session_start();
+        $user_type = $_SESSION['user_type'];
+        $user_id = $_SESSION['user_id'];
+    ?>
 </head>

@@ -7,7 +7,12 @@
     <title>Login</title>
 </head>
 
+
 <body>
+<div id="loading" class="">
+  <div id="loading2" class=""></div>
+</div>
+
     <div class="main">
         <section class="container">
             <div class="login-container">
@@ -16,11 +21,12 @@
                     <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
                         alt="illustration" class="illustration" />
                     <h1 class="opacity">LOGIN</h1>
+
                     <!--ichange lang ang action. gi ana lang sa nako pang next page-->
-                    <form action="views/dashboard.php">
-                        <input type="text" placeholder="USERNAME" />
-                        <input type="password" placeholder="PASSWORD" />
-                        <button class="opacity">SUBMIT</button>
+                    <form id="loginForm" methid="POST">
+                        <input type="text" name="username" placeholder="USERNAME" required/>
+                        <input type="password" name="password" placeholder="PASSWORD" required/>
+                        <button type="submit" class="opacity">SUBMIT</button>
                     </form>
                     <!-- <div class="register-forget opacity">
                         <a href="">REGISTER</a>
@@ -33,8 +39,6 @@
         </section>
     </div>
 </body>
-<script>
-
-</script>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="assets/js/handler.js"></script>
 </html>

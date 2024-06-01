@@ -32,40 +32,44 @@ require_once('components/_head.php');
               <h3>Please Fill All Fields</h3>
             </div>
             <div class="card-body">
-              <form method="POST" enctype="multipart/form-data">
+              <form id="add_product" method="POST" enctype="multipart/form-data">
                 <div class="form-row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label>Product Name</label>
-                    <input type="text" name="prod_name" class="form-control">
-                    <input type="hidden" name="prod_id" value="" class="form-control">
+                    <input type="text" name="prod_name" class="form-control" required>
+                    <input type="hidden" name="user_type" value="<?=$user_type?>" class="form-control">
                   </div>
-                  <div class="col-md-6">
-                    <label>Product Code</label>
-                    <input type="text" name="prod_code" value="" class="form-control" value="">
+                  <div class="col-md-5">
+                    <label>Invoice Number</label>
+                    <input type="text" name="prod_code" value="" class="form-control" value="" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Quantity</label>
+                    <input type="text" name="prod_quantity" value="" class="form-control" value="" required>
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                   <div class="col-md-6">
                     <label>Product Image</label>
-                    <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
+                    <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="" >
                   </div>
                   <div class="col-md-6">
                     <label>Product Price</label>
-                    <input type="text" name="prod_price" class="form-control" value="">
+                    <input type="text" name="prod_price" class="form-control" value="" required>
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                   <div class="col-md-12">
                     <label>Product Description</label>
-                    <textarea rows="5" name="prod_desc" class="form-control" value=""></textarea>
+                    <textarea rows="5" name="prod_desc" class="form-control" value="" required></textarea>
                   </div>
                 </div>
                 <br>
                 <div class="form-row">
                   <div class="col-md-6">
-                    <input type="submit" name="addProduct" value="Add Product" class="btn btn-success" value="">
+                    <input type="submit" name="addProduct" value="Add Product" class="btn btn-success">
                   </div>
                 </div>
               </form>

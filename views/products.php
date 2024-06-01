@@ -45,13 +45,8 @@ require_once('components/_head.php');
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                <tbody id="productTable">
+                                    
                                 </tbody>
                             </table>
                         </div>
