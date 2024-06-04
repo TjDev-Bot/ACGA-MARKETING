@@ -23,11 +23,14 @@
     <!-- Argon CSS -->
     <link type="text/css" href="assets/css/argon.css?v=1.0.0" rel="stylesheet">
     <script src="assets/js/swal.js"></script>
+<<<<<<< HEAD
 
 
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/payments.css">
+=======
+>>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
     <!--Load Swal-->
     <?php if (isset($success)) { ?>
         <!--This code for injecting success alert-->
