@@ -1,0 +1,14 @@
+th {
+    font-weight: 900 !important;
+    color: black !important;
+}
+
+td{
+    color: black !important;
+}
+
+.total h5{
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 10px;
+}
