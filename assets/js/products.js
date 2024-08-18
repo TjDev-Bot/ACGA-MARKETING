@@ -13,9 +13,15 @@ $("#add_product").submit(function (e) {
       $("#loader").attr("hidden", false);
     },
     success: function (data) {
-      $("#loader").attr("hidden", true);
-      $("#add_product")[0].reset();
-      swal("Success", "Product Successfully Added!", "success");
+      var response = JSON.parse(data);
+      if(response.status == "success"){
+        $("#loader").attr("hidden", true);
+        $("#add_product")[0].reset();
+        swal("Success", "Product Successfully Added!", "success");
+      }else{
+        $("#loader").attr("hidden", true);
+        swal("Error", "Something went wrong! please try again", "error");
+      }
     },
   });
 });

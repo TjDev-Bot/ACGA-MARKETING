@@ -137,7 +137,7 @@
             ?>
             <li class="nav-item">
               <a class="nav-link" href="payments.php" style="color: #fff;">
-                <i class="ni ni-credit-card text-primary"></i> Payments
+                <i class="ni ni-credit-card text-primary"></i> Out Stocks
               </a>
             </li>
             <li class="nav-item">
@@ -169,14 +169,18 @@
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
             <a class="nav-link" href="orders_reports.php" style="color: #fff;">
-              <i class="fas fa-shopping-basket yellow-icon"></i> Orders
+              <i class="fas fa-shopping-basket yellow-icon"></i> Orders Report
             </a>
           </li>
-          <!-- <li class="nav-item">
-          <a class="nav-link" href="#" onclick="showswal()" style="color: #fff;">
-          <i class="fas fa-funnel-dollar yellow-icon"></i> Payments
-          </a>
-        </li> -->
+          <?php
+          if ($user_type == 1) {
+            ?>
+          <li class="nav-item">
+            <a class="nav-link" href="stocks_report.php" style="color: #fff;">
+              <i class="fas fa-funnel-dollar yellow-icon"></i> Out Reports
+            </a>
+          </li>
+          <?php } ?>
         </ul>
         <script>
           function showswal() {

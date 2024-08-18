@@ -55,15 +55,18 @@ require_once('components/_head.php');
                     <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
                   </div>
                   <div class="col-md-2">
-                    <label>Product Price</label>
-                    <input type="number" name="prod_price" class="form-control" value="" required>
+                    <label>Unit Price</label>
+                    <input type="number" name="prod_unitprice" class="form-control" value="" required>
                   </div>
-                  <?php
-                  if ($user_type == 1) {
+                  <div class="col-md-2">
+                    <label>Retail Price</label>
+                    <input type="number" name="prod_retailprice" class="form-control" value="" required>
+                  </div>
+                  <!-- <?php
+                   if ($user_type == 1) {
                   ?>
                     <div class="col-md-3">
                       <label>Inventory Type</label>
-                      <!-- <input type="text" name="prod_type" class="form-control" value="" > -->
                       <select class="form-control" name="prod_type" aria-label="Default select example" required>
                         <option selected hidden disabled>Inventory Type</option>
                         <option value="1">One</option>
@@ -72,8 +75,8 @@ require_once('components/_head.php');
                       </select>
                     </div>
 
-                  <?php } ?>
-                  <div class="col-md-3">
+                  <?php } ?>  -->
+                  <div class="col-md-4">
                     <label>Product Category</label>
                     <input type="text" name="prod_category" class="form-control" value="" required>
                   </div>

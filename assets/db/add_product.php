@@ -10,30 +10,22 @@
     $prod_img = $_FILES['prod_img']['name'];
     $prod_img_temp = $_FILES['prod_img']['tmp_name'];
 
-    $prod_price = $_POST['prod_price'];
+    $prod_unitprice = $_POST['prod_unitprice'];
+    $prod_retailprice = $_POST['prod_retailprice'];
     $prod_desc = $_POST['prod_desc'];
 
     $datenow = date('Y-m-d H:i:s');
     $response = [];
 
-    if($_SESSION['user_type'] == 1){
-        $user_type = $_POST['prod_type'];
-    }else{
-        $user_type = $_POST['user_type'];
-    }
-    // $insert = $conn->query("INSERT INTO inventory 
-    //     (inventory_type, name, invoice_id, image, quantity, price, description, date_updated) VALUES 
-    //     ('$user_type', '$prod_name', '$prod_code', '$prod_img', '$prod_quantity', '$prod_price', '$prod_desc', '$datenow')");
-    
-    // if($insert){
-    //     move_uploaded_file($prod_img_temp, "../../images/products/$prod_img");
-    //     echo "success";
+    // if($_SESSION['user_type'] == 1){
+    //     $user_type = $_POST['prod_type'];
     // }else{
-    //     echo "failed";
+    //     $user_type = $_POST['user_type'];
     // }
-    $SELECT = "SELECT id From inventory Where id = ? Limit 1";
-    $INSERT = "INSERT INTO inventory (inventory_type, name, invoice_id, category_type, image, quantity, price, description, date_updated) 
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) 
+
+    $SELECT = "SELECT id From warehouse_inventory Where id = ? Limit 1";
+    $INSERT = "INSERT INTO warehouse_inventory (out_branch, name, invoice_id, category_type, image, quantity, unit_price, retail_price, description, date_updated) 
+           VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
            ON DUPLICATE KEY UPDATE invoice_id = invoice_id";
     $stmt = $conn->prepare($SELECT);
     $stmt->bind_param("s", $user_type);
@@ -45,7 +37,7 @@
     if ($rnum == 0) {
         $stmt->close();
         $stmt = $conn->prepare($INSERT);
-        $stmt->bind_param("sssssssss", $user_type, $prod_name, $prod_code, $prod_cat, $prod_img, $prod_quantity, $prod_price, $prod_desc, $datenow);
+        $stmt->bind_param("sssssssss", $prod_name, $prod_code, $prod_cat, $prod_img, $prod_quantity, $prod_unitprice, $prod_retailprice, $prod_desc, $datenow);
         $stmt->execute();
         move_uploaded_file($prod_img_temp, "../../images/products/$prod_img");
         

@@ -109,30 +109,30 @@ require_once ('components/_head.php');
                                 </thead>
                                 <tbody id="orderTable">
                                     <?php
-                                    $query = $conn->query("SELECT ordered_items.*, inventory.name, inventory.invoice_id, inventory.price FROM ordered_items INNER JOIN inventory ON ordered_items.product_id = inventory.id ORDER BY id DESC");
-                                    $checkout_ids = [];
-                                    $totalprice = 0;
-                                    $total_items = 0;
-                                    while ($row = $query->fetch_assoc()) {
-                                        $checkout_id = $row['checkout_id'];
-                                        if (!isset($checkout_ids[$checkout_id])) {
-                                            $checkout_ids[$checkout_id] = [
-                                                'checkout_id' => $row['checkout_id'],
-                                                'total_price' => 0,
-                                                'date' => $row['date'],
-                                                'invoice_id' => $row['invoice_id'],
-                                                'item_count' => 0,
-                                            ];
-                                        }
-                                        $totalprice = $row['quantity'] * $row['price'];
-                                        $checkout_ids[$checkout_id]['total_price'] += $totalprice;
-                                        $checkout_ids[$checkout_id]['item_count'] += $row['quantity'];
-                                    }
+                                    $query = $conn->query("SELECT * FROM sales ORDER BY id DESC");
+                                    // $checkout_ids = [];
+                                    // $totalprice = 0;
+                                    // $total_items = 0;
+                                    // while ($row = $query->fetch_assoc()) {
+                                    //     $checkout_id = $row['checkout_id'];
+                                    //     if (!isset($checkout_ids[$checkout_id])) {
+                                    //         $checkout_ids[$checkout_id] = [
+                                    //             'checkout_id' => $row['checkout_id'],
+                                    //             'total_price' => 0,
+                                    //             'date' => $row['date'],
+                                    //             'invoice_id' => $row['invoice_id'],
+                                    //             'item_count' => 0,
+                                    //         ];
+                                    //     }
+                                    //     $totalprice = $row['quantity'] * $row['price'];
+                                    //     $checkout_ids[$checkout_id]['total_price'] += $totalprice;
+                                    //     $checkout_ids[$checkout_id]['item_count'] += $row['quantity'];
+                                    // }
 
-                                    //   print_r($checkout_ids);
-                                    foreach ($checkout_ids as $checkout_id => $data) {
+                                    // //   print_r($checkout_ids);
+                                    // foreach ($checkout_ids as $checkout_id => $data) {
                                         ?>
-                                        <tr>
+                                        <!-- <tr>
                                             <td></td>
                                             <td><?= $data['checkout_id'] ?></td>
                                             <td><?= $data['item_count'] ?></td>
@@ -142,11 +142,9 @@ require_once ('components/_head.php');
                                                 <button data-ordered-id="<?= $checkout_id ?>" data-toggle='modal'
                                                     data-target='#checkOrder'
                                                     class='btn btn-sm btn-info check_order'>Check</button>
-                                                <!-- <button data-order-uid="<?= $checkout_id ?>" class='btn btn-sm btn-outline-warning delete_order'>Delete</button> -->
                                             </td>
                                             <td></td>
-                                        </tr>
-                                    <?php } ?>
+                                        </tr> -->
                                 </tbody>
                             </table>
                         </div>

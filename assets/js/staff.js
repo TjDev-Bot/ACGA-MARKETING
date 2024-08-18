@@ -16,6 +16,7 @@ $(function () {
       success: function (data) {
         $("#loader").attr("hidden", true);
         if (data.status == "success") {
+          $("#add_staff")[0].reset();
           swal("Success", data.message, "success");
         } else {
           swal("Error", data.message, "error");

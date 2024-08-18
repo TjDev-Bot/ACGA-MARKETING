@@ -46,6 +46,54 @@ require_once('components/_head.php');
     </div>
 </div>
 
+<div class="modal fade" id="outItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="outSpecificProduct" method="POST">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Out Stock</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label>Product Code</label>
+                            <input type="text" name="stock_id" id="stockID" class="form-control" value="" hidden>
+                            <input type="text" name="stock_code" id="stockCODE" class="form-control" value="" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Product Name</label>
+                            <input type="text" name="stock_name" id="stockNAME" class="form-control" value="" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label>Quantity</label>
+                            <input type="number" name="stock_quantity" id="stockQUANTITY" class="form-control" value="" required>
+                        </div>
+                        <div class="col col-md-6">
+                            <label>Branch</label>
+                            <select class="form-control" name="stock_branch" id="stockBRANCH" aria-label="Default select example" required>
+                                <option selected hidden disabled>Inventory Type</option>
+                                <option value="1">Hardware Branch</option>
+                                <option value="2">Appliance Branch</option>
+                                <option value="3">Aggriculture Branch</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Out Stocks</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <body>
     <!-- Sidenav -->
     <?php
@@ -119,8 +167,10 @@ require_once('components/_head.php');
                                         <th scope="col">Product Code</th>
                                         <th class="text-success" scope="col">Name</th>
                                         <th scope="col">Category</th>
-                                        <th class="text-success" scope="col">Price</th>
-                                        <th scope="col">Quantity</th>
+                                        <th class="text-success" scope="col">Unit Price</th>
+                                        <th scope="col">Retail Price</th>
+                                        <th class="text-success" scope="col">Quantity</th>
+                                        <th scope="col">Out Branch</th>
                                         <th class="text-success" scope="col">Actions</th>
                                     </tr>
                                 </thead>

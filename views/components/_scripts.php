@@ -11,3 +11,4 @@
   <script src="../assets/js/product_options.js"></script>
   <script src="../assets/js/order.js"></script>
   <script src="../assets/js/order_report.js"></script>
+  <script src="../assets/js/out_stocks.js"></script>

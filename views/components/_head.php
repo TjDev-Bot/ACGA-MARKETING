@@ -66,30 +66,30 @@
             $query = $conn->query("SELECT * FROM users INNER JOIN staffs ON users.username = staffs.username WHERE users.id = $user_id");
             $row = $query->fetch_assoc();
             $username = $row['name'];
-            $getInventory = $conn->query("SELECT COUNT(id) as inventory_count FROM inventory WHERE inventory_type = $user_type");
-            $fetchInventory = $getInventory->fetch_assoc();
-            $getHeldOrders = $conn->query("SELECT COUNT(distinct checkout_id) as held_count FROM held_orders WHERE user_type = $user_type");
-            $fetchHeldOrers = $getHeldOrders->fetch_assoc();
-            $getOrders = $conn->query("SELECT COUNT(distinct checkout_id) as order_count FROM ordered_items WHERE user_type = $user_type");
-            $fetchOrers = $getOrders->fetch_assoc();
-            $getSales = $conn->query("SELECT price, quantity FROM ordered_items WHERE user_type = $user_type");
-            $totalSales = 0;
-            while($row = $getSales->fetch_assoc()){
-                $totalSales += intval($row['price']) * intval($row['quantity']);
-            }
+            // $getInventory = $conn->query("SELECT COUNT(id) as inventory_count FROM inventory WHERE inventory_type = $user_type");
+            // $fetchInventory = $getInventory->fetch_assoc();
+            // $getHeldOrders = $conn->query("SELECT COUNT(distinct checkout_id) as held_count FROM held_orders WHERE user_type = $user_type");
+            // $fetchHeldOrers = $getHeldOrders->fetch_assoc();
+            // $getOrders = $conn->query("SELECT COUNT(distinct checkout_id) as order_count FROM ordered_items WHERE user_type = $user_type");
+            // $fetchOrers = $getOrders->fetch_assoc();
+            // $getSales = $conn->query("SELECT price, quantity FROM ordered_items WHERE user_type = $user_type");
+            // $totalSales = 0;
+            // while($row = $getSales->fetch_assoc()){
+            //     $totalSales += intval($row['price']) * intval($row['quantity']);
+            // }
         }else{
             $username = "Admin Admin";
-            $getInventory = $conn->query("SELECT COUNT(id) as inventory_count FROM inventory");
-            $fetchInventory = $getInventory->fetch_assoc();
-            $getHeldOrders = $conn->query("SELECT COUNT(distinct checkout_id) as held_count FROM held_orders ");
-            $fetchHeldOrers = $getHeldOrders->fetch_assoc();
-            $getOrders = $conn->query("SELECT COUNT(distinct checkout_id) as order_count FROM ordered_items ");
-            $fetchOrers = $getOrders->fetch_assoc();
-            $getSales = $conn->query("SELECT price, quantity FROM ordered_items");
-            $totalSales = 0;
-            while($row = $getSales->fetch_assoc()){
-                $totalSales += intval($row['price']) * intval($row['quantity']);
-            }
+            // $getInventory = $conn->query("SELECT COUNT(id) as inventory_count FROM inventory");
+            // $fetchInventory = $getInventory->fetch_assoc();
+            // $getHeldOrders = $conn->query("SELECT COUNT(distinct checkout_id) as held_count FROM held_orders ");
+            // $fetchHeldOrers = $getHeldOrders->fetch_assoc();
+            // $getOrders = $conn->query("SELECT COUNT(distinct checkout_id) as order_count FROM ordered_items ");
+            // $fetchOrers = $getOrders->fetch_assoc();
+            // $getSales = $conn->query("SELECT price, quantity FROM ordered_items");
+            // $totalSales = 0;
+            // while($row = $getSales->fetch_assoc()){
+            //     $totalSales += intval($row['price']) * intval($row['quantity']);
+            // }
         }
     ?>
 </head>
