@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
+  <style>
     /* Custom CSS for the navigation bar */
     .custom-navbar {
-      background-color: #002C3E; /* Dark black background color */
+      background-color: #002C3E;
+      /* Dark black background color */
       /* color: #fff !important; White font color */
     }
+
     .yellow-icon {
       color: yellow !important;
     }
+
     .orange-icon {
       color: orange !important;
     }
+
     .center-image {
       display: flex;
       align-items: center;
     }
   </style>
 </head>
+
 <body>
 
-<?php
+  <?php
 
 
-?>
+  ?>
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light custom-navbar" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+        aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0 center-image" href="dashboard.php">
-        LOGO
-      <!-- <img src="" class="navbar-brand-img" alt="..."> -->
+      <!-- navbar-brand pt-0 center-image -->
+      <!-- navbar-brand-img -->
+      <a class="d-flex justify-content-center" href="dashboard.php">
+        <img src="../images/acg.png" class="" alt="..." width="65%">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
             <i class="ni ni-bell-55"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
+            aria-labelledby="navbar-default_dropdown_1">
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -80,7 +90,8 @@
               </a>
             </div>
             <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main"
+                aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
                 <span></span>
                 <span></span>
               </button>
@@ -90,7 +101,8 @@
         <!-- Form -->
         <form class="mt-4 mb-3 d-md-none">
           <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search"
+              aria-label="Search">
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <span class="fa fa-search"></span>
@@ -117,48 +129,66 @@
           </li> -->
           <li class="nav-item">
             <a class="nav-link" href="products.php" style="color: #fff;">
-              <i class="ni ni-bullet-list-67 text-primary"></i>Products
+              <i class="ni ni-bullet-list-67 text-primary"></i>Inventory
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="payments.php" style="color: #fff;">
-              <i class="ni ni-credit-card text-primary"></i> Payments
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="orders.php" style="color: #fff;">
-              <i class="ni ni-cart text-primary"></i> Orders
-            </a>
-          </li>
-          <li class="nav-item">
+          <?php
+          if ($user_type != 1) {
+            ?>
+            <li class="nav-item">
+              <a class="nav-link" href="payments.php" style="color: #fff;">
+                <i class="ni ni-credit-card text-primary"></i> Payments
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="orders.php" style="color: #fff;">
+                <i class="ni ni-cart text-primary"></i> Orders
+              </a>
+            </li>
+          <?php } ?>
+          <!-- <li class="nav-item">
             <a class="nav-link" href="receipts.php" style="color: #fff;">
               <i class="fas fa-file-invoice-dollar text-primary"></i> Receipts
             </a>
+          </li> -->
+          <?php
+          if ($user_type == 1) {
+            ?>
+            <li class="nav-item">
+              <a class="nav-link" href="staffs.php" style="color: #fff;">
+                <i class="fas fa-file-invoice-dollar text-primary"></i> Staffs
+              </a>
+            </li>
+          <?php } ?>
+        </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <h6 class="navbar-heading text-muted" style="color: #fff;">Reporting</h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+            <a class="nav-link" href="orders_reports.php" style="color: #fff;">
+              <i class="fas fa-shopping-basket yellow-icon"></i> Orders
+            </a>
           </li>
-      </ul>
-      <!-- Divider -->
-      <hr class="my-3">
-      <!-- Heading -->
-      <h6 class="navbar-heading text-muted" style="color: #fff;">Reporting</h6>
-      <!-- Navigation -->
-      <ul class="navbar-nav mb-md-3">
-        <li class="nav-item">
-          <a class="nav-link" href="orders_reports.php" style="color: #fff;">
-          <i class="fas fa-shopping-basket yellow-icon"></i> Orders
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="payments_reports.php" style="color: #fff;">
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="#" onclick="showswal()" style="color: #fff;">
           <i class="fas fa-funnel-dollar yellow-icon"></i> Payments
           </a>
-        </li>
-      </ul>
-      <hr class="my-3">
-      <ul class="navbar-nav mb-md-3">
-        <li class="nav-item">
-          <a class="nav-link" href="../assets/db/logout.php" style="color: #fff;">
-          <i class="fas fa-sign-out-alt orange-icon"></i> Log Out
-          </a>
+        </li> -->
+        </ul>
+        <script>
+          function showswal() {
+            swal("Failed", "Error this page is under development", "error");
+          }
+        </script>
+        <hr class="my-3">
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../assets/db/logout.php" style="color: #fff;">
+              <i class="fas fa-sign-out-alt orange-icon"></i> Log Out
+            </a>
           </li>
         </ul>
       </div>
@@ -168,4 +198,5 @@
 
 
 </body>
+
 </html>

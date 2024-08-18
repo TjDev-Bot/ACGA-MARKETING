@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-
     <link rel="stylesheet" href="login.css">
     <title>Login</title>
+    <script src="views/assets/js/swal.js"></script>
 </head>
 
 
@@ -22,8 +22,7 @@
                         alt="illustration" class="illustration" />
                     <h1 class="opacity">LOGIN</h1>
 
-                    <!--ichange lang ang action. gi ana lang sa nako pang next page-->
-                    <form id="loginForm" methid="POST">
+                    <form id="loginForm" method="POST">
                         <input type="text" name="username" placeholder="USERNAME" required/>
                         <input type="password" name="password" placeholder="PASSWORD" required/>
                         <button type="submit" class="opacity">SUBMIT</button>
@@ -41,4 +40,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="assets/js/handler.js"></script>
+<script src="views/assets/js/argon.js?v=1.0.0"></script>
 </html>

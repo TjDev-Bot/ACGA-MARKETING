@@ -6,10 +6,10 @@
     // $password = "6ZVhpPoskWrf";
     // $dbname = "if0_36567256_genkicms";
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "accg_pos";
+    $servername = "sql208.infinityfree.com";
+    $username = "if0_37055028";
+    $password = "eiGjpEiYVRuHxS";
+    $dbname = "if0_37055028_acg_marketing";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 

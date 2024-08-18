@@ -1,5 +1,4 @@
 <?php
-
 require_once('components/_head.php');
 ?>
 
@@ -24,8 +23,9 @@ require_once('components/_head.php');
         </div>
         <!-- Page content -->
         <div class="container-fluid mt--9">
+            <!-- <div class="container"> -->
             <div class="row">
-                <div class="col">
+                <div class="col-lg-7">
                     <div class="card shadow">
                         <div class="card-header" style="height: 0px; border: 0;">
                             <div class="row">
@@ -43,55 +43,86 @@ require_once('components/_head.php');
                             </div>
                         </div>
                         <div class="card-body border-0">
-
+                            <div class="container mt-3">
+                                <div class="row g-2 overflow-auto" style="height: 300px; overflow: auto">
+                                    <!-- <?php
+                                            for ($i = 1; $i <= 50; $i++) {
+                                            ?>
+                                            <div class="col col-sm-3">
+                                                <div class="p-3 card shadow">
+                                                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGKdbvFIR82hted9BOKd81zoingkwRgr-HQ&s" alt="Card image cap">
+                                                    <h6 class="card-title text-center">Card title</h6>
+                                                    <button class="btn btn-primary btn-sm addCheckoutProduct" data-target-product-id="<?= $rows['id']; ?>">+ ADD</button>
+                                                </div>
+                                            </div>
+                                        <?php } ?> -->
+                                    <?php
+                                    $user_type = $_SESSION['user_type'];
+                                    if ($user_type == 1) {
+                                        $sql = "SELECT * FROM inventory";
+                                    } else {
+                                        $sql = "SELECT * FROM inventory WHERE inventory_type = $user_type ORDER BY date_updated DESC";
+                                    }
+                                    $getInv = $conn->query($sql);
+                                    while ($rows = $getInv->fetch_assoc()) {
+                                        if ($rows['image'] == '') {
+                                            $image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGKdbvFIR82hted9BOKd81zoingkwRgr-HQ&s';
+                                        } else {
+                                            $image = '../images/products/' . $rows['image'];
+                                        }
+                                    ?>
+                                        <div class="col col-sm-3">
+                                            <div class="p-3 card shadow">
+                                                <div class="d-flex justify-content-center" style='width: 100%; height: 50px; overflow: hidden; margin-left: auto; margin-right: auto;'>
+                                                    <img class="card-img-top" src="<?= $image ?>" alt="Card image cap" style='width: 100%; height: 100%; object-fit: cover; '> 
+                                                </div>
+                                                <!-- <img class="" src="<?= $image ?>" alt=""> -->
+                                                <h6 class="card-title text-center"><?= ucwords($rows['name']) ?></h6>
+                                                <button class="btn btn-primary btn-sm addCheckoutProduct" data-target-product-id="<?= $rows['id']; ?>">+ ADD</button>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div class="col-md-3">
-=======
-                <div class="col-md-auto">
->>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
+                <div class="col-md-5">
                     <div class="card shadow">
                         <div class="card-header" style="height: 0px; border: 0;">
                             <h3 class="text-bold text-center">Checkout</h3>
                         </div>
                         <div class="card-body border-0">
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                            <div class="table-responsive" style="height: 250px">
+                                <!-- class="table table-sm align-items-center table-striped table-hover" -->
+                                <table class="table table-sm align-items-center table-striped table-hover" style="width: 100%">
                                     <thead class="thead-light">
                                         <tr>
-<<<<<<< HEAD
-                                            <th scope="col-auto">Product Name</th>
-                                            <th scope="col-auto">Quantity</th>
-                                            <th scope="col-auto">Price</th>
-=======
                                             <th scope="col"><b>Product Name</b></th>
                                             <th scope="col"><b>Quantity</b></th>
                                             <th scope="col"><b>Price</b></th>
->>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Test Product</td>
-                                            <td>
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <button class="btn btn-primary" id="inputGroup-sizing-sm" type="button">-</button>
-                                                    </div>
-<<<<<<< HEAD
-                                                    <input type="number" class="form-control input-sm text-center" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width: 10px;" min="0">
-=======
-                                                    <input type="number" class="form-control input-sm text-center" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width: 50px;" min="0">
->>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-primary" id="inputGroup-sizing-sm" type="button">+</button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>500</td>
-                                        </tr>
+                                    <tbody id="checkoutTable" class="overflow-auto">
+                                        <!-- <?php
+                                                for ($b = 1; $b <= 30; $b++) {
+                                                ?>
+                                                <tr>
+                                                    <td>Awawa</td>
+                                                    <td>
+                                                        <div class="input-group input-group-sm mb-3" style="width: 100px">
+                                                            <div class="input-group-prepend">
+                                                                <button class="btn btn-primary minusQuantity" id="inputGroup-sizing-sm" type="button">-</button>
+                                                            </div>
+                                                            <input type="number" class="form-control input-sm text-center" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width: 0px;" min="0" value="1">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-primary addQuantity" id="inputGroup-sizing-sm" type="button">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>₱ 100.00</td>
+                                                </tr>
+                                            <?php } ?> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -99,56 +130,34 @@ require_once('components/_head.php');
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col">
-<<<<<<< HEAD
-                                    <h5>Sub Total: </h5>
-=======
                                     <h5>Total Amount: </h5>
->>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
                                 </div>
                                 <div class="col-md-auto">
-                                    <h5>500</h5>
+                                    <h5 id="total"></h5>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-<<<<<<< HEAD
-                                    <h5>Tax: <span style="color: green; text-decoration: underline;">4%</span></h5>
-                                </div>
-                                <div class="col-md-auto">
-                                    <h5>3</h5>
-                                </div>
-                            </div>
-                            <div class="row total">
-                                <div class="col">
-                                    <h5><b>Total</b></h5>
-                                </div>
-                                <div class="col-md-auto">
-                                    <h5 style="color:green;">503</h5>
-=======
                                     <h5>Tax: </h5>
                                 </div>
                                 <div class="col-md-auto">
                                     <h5>4%</h5>
->>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- </div> -->
             <div class="row justify-content-end mt-3">
                 <div class="col-md-auto">
-                    <button class="btn btn-lg btn-outline-danger" type="button">Cancel Order</button>
+                    <button class="btn btn-lg btn-outline-danger ordr cancel" type="button" disabled>Cancel Order</button>
                 </div>
                 <div class="col-md-auto">
-                    <button class="btn btn-lg btn-outline-info" type="button">Hold Order</button>
+                    <button class="btn btn-lg btn-outline-info ordr hold" type="button" disabled>Hold Order</button>
                 </div>
-<<<<<<< HEAD
-                <div class="col col-lg-3">
-=======
                 <div class="col col-lg-5">
->>>>>>> 9a29c412b4010a8e58675d351c1e75b411ce511c
-                    <button class="btn btn-lg btn-success w-100" type="button">Checkout</button>
+                    <button class="btn btn-lg btn-success w-100 ordr purchase" type="button" disabled>Checkout</button>
                 </div>
             </div>
 

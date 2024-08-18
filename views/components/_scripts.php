@@ -7,3 +7,7 @@
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
 
   <script src="../assets/js/products.js"></script>
+  <script src="../assets/js/staff.js"></script>
+  <script src="../assets/js/product_options.js"></script>
+  <script src="../assets/js/order.js"></script>
+  <script src="../assets/js/order_report.js"></script>

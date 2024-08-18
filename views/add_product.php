@@ -16,7 +16,7 @@ require_once('components/_head.php');
     ?>
     <!-- Header -->
     <div style="background-image: url(assets/img/theme/ag.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
-    <span class="mask bg-gradient-dark opacity-5"></span>
+      <span class="mask bg-gradient-dark opacity-5"></span>
       <div class="container-fluid">
         <div class="header-body">
         </div>
@@ -37,7 +37,7 @@ require_once('components/_head.php');
                   <div class="col-md-4">
                     <label>Product Name</label>
                     <input type="text" name="prod_name" class="form-control" required>
-                    <input type="hidden" name="user_type" value="<?=$user_type?>" class="form-control">
+                    <input type="hidden" name="user_type" value="<?= $user_type ?>" class="form-control">
                   </div>
                   <div class="col-md-5">
                     <label>Invoice Number</label>
@@ -45,18 +45,37 @@ require_once('components/_head.php');
                   </div>
                   <div class="col-md-3">
                     <label>Quantity</label>
-                    <input type="text" name="prod_quantity" value="" class="form-control" value="" required>
+                    <input type="number" name="prod_quantity" value="" class="form-control" value="" required>
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
-                  <div class="col-md-6">
+                  <div class="col col-md-4">
                     <label>Product Image</label>
-                    <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="" >
+                    <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-2">
                     <label>Product Price</label>
-                    <input type="text" name="prod_price" class="form-control" value="" required>
+                    <input type="number" name="prod_price" class="form-control" value="" required>
+                  </div>
+                  <?php
+                  if ($user_type == 1) {
+                  ?>
+                    <div class="col-md-3">
+                      <label>Inventory Type</label>
+                      <!-- <input type="text" name="prod_type" class="form-control" value="" > -->
+                      <select class="form-control" name="prod_type" aria-label="Default select example" required>
+                        <option selected hidden disabled>Inventory Type</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+
+                  <?php } ?>
+                  <div class="col-md-3">
+                    <label>Product Category</label>
+                    <input type="text" name="prod_category" class="form-control" value="" required>
                   </div>
                 </div>
                 <hr>
@@ -68,20 +87,25 @@ require_once('components/_head.php');
                 </div>
                 <br>
                 <div class="form-row">
-                  <div class="col-md-6">
-                    <input type="submit" name="addProduct" value="Add Product" class="btn btn-success">
-                  </div>
-                </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="submit" name="addProduct" value="Add Product" class="btn btn-success">
+                    </div>
               </form>
+              <div class="col">
+                <input type="button" value="Cancel" onclick="window.history.go(-1)" class="btn btn-outline-warning">
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Footer -->
-      <?php
-      require_once('components/_footer.php');
-      ?>
     </div>
+  </div>
+  <!-- Footer -->
+  <?php
+  require_once('components/_footer.php');
+  ?>
+  </div>
   </div>
   <!-- Argon Scripts -->
   <?php
