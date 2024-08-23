@@ -83,7 +83,7 @@ require_once('components/_head.php');
                 </thead>
                 <tbody>
                   <?php
-                  $query = $conn->query("SELECT held_orders.*, inventory.price FROM held_orders INNER JOIN inventory ON held_orders.product_id = inventory.id ORDER BY id DESC");
+                  $query = $conn->query("SELECT held_orders.*, branch_inventory.unit_price FROM held_orders INNER JOIN branch_inventory ON held_orders.product_id = branch_inventory.id ORDER BY held_orders.id DESC");
                   $checkout_ids = [];
                   $totalprice = 0;
                   while ($row = $query->fetch_assoc()) {
@@ -94,7 +94,7 @@ require_once('components/_head.php');
                         'date' => $row['date']
                       ];
                     }
-                    $totalprice = $row['quantity'] * $row['price'];
+                    $totalprice = $row['quantity'] * $row['unit_price'];
                     $checkout_ids[$checkout_id]['total_price'] += $totalprice;
                   }
 

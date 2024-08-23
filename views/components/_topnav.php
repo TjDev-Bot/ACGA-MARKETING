@@ -2,7 +2,15 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard.php">Dashboard</a>
+            <?php 
+                $branch_name = "";
+                if($user_type != 0){
+                    $branch_name = $conn->query("select branch_name from branches where branch_id = '$user_type'")->fetch_assoc()['branch_name'];
+                }else{
+                    $branch_name = ' ';
+                }
+            ?>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard.php"><?= $branch_name ?> <?=$user_id == 1 ? 'Admin' : 'Branch'?> Dashboard</a>
             <!-- Form -->
 
             <!-- User -->

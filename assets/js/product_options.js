@@ -56,7 +56,8 @@ function editItem(item_id){
       $("#prodID").val(data.id);
       $("#prodCODE").val(data.invoice_id);
       $("#prodNAME").val(data.name);
-      $("#prodPRICE").val(data.price);
+      $("#prodRetailPRICE").val(data.retail_price);
+      $("#prodUnitPRICE").val(data.unit_price);
       $("#prodQUANTITY").val(data.quantity);
     },
   });

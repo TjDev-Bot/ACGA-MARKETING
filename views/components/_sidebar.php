@@ -133,11 +133,11 @@
             </a>
           </li>
           <?php
-          if ($user_type != 1) {
+          if ($user_id != 1) {
             ?>
             <li class="nav-item">
               <a class="nav-link" href="payments.php" style="color: #fff;">
-                <i class="ni ni-credit-card text-primary"></i> Out Stocks
+                <i class="ni ni-credit-card text-primary"></i> Sales
               </a>
             </li>
             <li class="nav-item">
@@ -152,8 +152,13 @@
             </a>
           </li> -->
           <?php
-          if ($user_type == 1) {
+          if ($user_id == 1) {
             ?>
+            <li class="nav-item">
+            <a class="nav-link" href="inventory.php" style="color: #fff;">
+            <i class="ni ni-bullet-list-67 text-primary"></i> Branches Inventory
+            </a>
+          </li>
             <li class="nav-item">
               <a class="nav-link" href="staffs.php" style="color: #fff;">
                 <i class="fas fa-file-invoice-dollar text-primary"></i> Staffs
@@ -173,7 +178,7 @@
             </a>
           </li>
           <?php
-          if ($user_type == 1) {
+          if ($user_id == 1) {
             ?>
           <li class="nav-item">
             <a class="nav-link" href="stocks_report.php" style="color: #fff;">

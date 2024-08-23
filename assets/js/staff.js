@@ -52,6 +52,7 @@ $(function () {
         staff_id: $(this).data("staff-id"),
       },
       success: function (response) {
+        // console.log(response);
         $("#staffUid").val(response.id);
         $("#staffId").val(response.staff_id);
         $("#staffName").val(
@@ -64,7 +65,7 @@ $(function () {
             .join(" ")
         );
         $("#staffUname").val(response.username);
-        $("#staffType").val(response.user_type);
+        $("#staffType").val(response.branch_id);
         $("#staffStatus").val(response.status);
       },
     });

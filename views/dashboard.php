@@ -124,7 +124,7 @@ require_once ('components/_head.php');
                 </thead>
                 <tbody>
                   <?php
-                  if($user_id != 4){
+                  if($user_id != 1){
                     $query = $conn->query("SELECT * FROM ordered_items WHERE user_type = $user_type ORDER BY date DESC");
                   }else{
                     $query = $conn->query("SELECT * FROM ordered_items  ORDER BY date DESC");

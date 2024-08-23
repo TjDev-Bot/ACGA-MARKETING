@@ -48,9 +48,14 @@ require_once('components/_head.php');
                     <label>Staff Type</label>
                     <select class="form-control" name="staff_type" aria-label="Default select example">
                       <option selected hidden>Choose Category</option>
-                      <option value="2">Hardware</option>
-                      <option value="3">Appliances</option>
-                      <option value="4">Aggriculture</option>
+                      <?php
+                        $query = $conn->query('SELECT * FROM branches');
+                        while ($row = $query->fetch_assoc()) {
+                      ?>
+                        <option value="<?= $row['branch_id'] ?>"><?= $row['branch_name'] ?></option>
+                      <?php
+                        }
+                      ?>
                     </select>
                   </div>
                   <div class="col-md-4">

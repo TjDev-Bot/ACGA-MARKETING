@@ -87,10 +87,10 @@ function loadCheckout() {
               '<td><div class="input-group input-group-sm mb-3" style="width: 100px">' +
               '<div class="input-group-prepend"><button class="btn btn-primary minusQuantity" id="inputGroup-sizing-sm" type="button">-</button></div>' +
               '<input type="number" class="form-control input-sm text-center quantityNum" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width: 0px;" min="0" value="' +
-              row.quantity + '" data-initial-value="' + row.quantity + '">' + '<div class="input-group-append">' +
+              row.quantity + '" data-initial-value="' + row.quantity + '" readonly>' + '<div class="input-group-append">' +
               '<button class="btn btn-primary addQuantity" id="inputGroup-sizing-sm" type="button">+</button></div>';
             tr += "</div></td>";
-            tr += "<td id='price' data-price='" + product_info.price + "'>₱ " + product_info.price + "</td>";
+            tr += "<td id='price' data-price='" + product_info.retail_price + "'>₱ " + product_info.retail_price + "</td>";
             tr += "</tr>";
           checkoutTable.append(tr);
         });

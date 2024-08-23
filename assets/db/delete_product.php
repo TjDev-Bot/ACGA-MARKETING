@@ -21,7 +21,7 @@
     //     default: die();
     // }
     
-    if($user_type == 1){
+    if($user_type == 0){
         $query = $conn->query("DELETE FROM warehouse_inventory WHERE id = $item_id");
     }else{
         $query = $conn->query("DELETE FROM branch_inventory WHERE id = $item_id");

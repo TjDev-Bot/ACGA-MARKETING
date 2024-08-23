@@ -58,11 +58,8 @@ require_once('components/_head.php');
                                         <?php } ?> -->
                                     <?php
                                     $user_type = $_SESSION['user_type'];
-                                    if ($user_type == 1) {
-                                        $sql = "SELECT * FROM inventory";
-                                    } else {
-                                        $sql = "SELECT * FROM inventory WHERE inventory_type = $user_type ORDER BY date_updated DESC";
-                                    }
+                                    $sql = "SELECT * FROM branch_inventory WHERE inventory_type = $user_type ORDER BY date_updated DESC";
+
                                     $getInv = $conn->query($sql);
                                     while ($rows = $getInv->fetch_assoc()) {
                                         if ($rows['image'] == '') {
@@ -104,25 +101,7 @@ require_once('components/_head.php');
                                         </tr>
                                     </thead>
                                     <tbody id="checkoutTable" class="overflow-auto">
-                                        <!-- <?php
-                                                for ($b = 1; $b <= 30; $b++) {
-                                                ?>
-                                                <tr>
-                                                    <td>Awawa</td>
-                                                    <td>
-                                                        <div class="input-group input-group-sm mb-3" style="width: 100px">
-                                                            <div class="input-group-prepend">
-                                                                <button class="btn btn-primary minusQuantity" id="inputGroup-sizing-sm" type="button">-</button>
-                                                            </div>
-                                                            <input type="number" class="form-control input-sm text-center" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width: 0px;" min="0" value="1">
-                                                            <div class="input-group-append">
-                                                                <button class="btn btn-primary addQuantity" id="inputGroup-sizing-sm" type="button">+</button>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>₱ 100.00</td>
-                                                </tr>
-                                            <?php } ?> -->
+                                        
                                     </tbody>
                                 </table>
                             </div>

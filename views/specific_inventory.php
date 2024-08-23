@@ -1,5 +1,4 @@
 <?php
-
 require_once('components/_head.php');
 ?>
 
@@ -29,50 +28,52 @@ require_once('components/_head.php');
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
-                        <div class="card-header border-0" style="color: orange;">
-                            <b>Stocks Report...</b>
+                        <div class="card-header border-0">
+                            <div class="row">
+                                <div class="col d-flex p-2 align-items-center">
+                                    <a href="inventory.php" class="btn btn-outline-warning">
+                                        <i class="fas fa-arrow-left"></i> Back
+                                    </a>
+                                    <?php
+                                        if (isset($_GET['branch'])) {
+                                            $branch = $_GET['branch'];
+                                        }
+
+                                        $get = $conn->query("SELECT branch_name FROM branches WHERE branch_id = '$branch'");
+                                        $branch_name = $get->fetch_assoc();
+                                    ?>
+                                    <b class="text-warning"><?=$branch_name['branch_name']?> Inventory...</b>
+                                </div>
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">Product Code</th>
-                                        <th class="text-success" scope="col">Name</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Category</th>
-                                        <th class="text-success" scope="col">Unit Price</th>
+                                        <th scope="col">Unit Price</th>
                                         <th scope="col">Retail Price</th>
-                                        <th class="text-success" scope="col">Quantity</th>
-                                        <th scope="col">Out Branch</th>
+                                        <th scope="col">Quantity</th>
                                         <th class="text-success" scope="col">Date Created</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = $conn->query("SELECT * FROM branch_inventory ORDER BY id DESC");
+                                    $query = $conn->query("SELECT * FROM branch_inventory WHERE inventory_type = '$branch' ORDER BY id DESC");
                                     while ($row = $query->fetch_assoc()) {
-                                        switch($row['inventory_type']){
-                                            case 1:
-                                                $inventory_type = "Hardware Branch";
-                                                break;
-                                            case 2:
-                                                $inventory_type = "Appliances Branch";
-                                                break;
-                                            case 3:
-                                                $inventory_type = "Aggriculture Branch";
-                                                break;
-                                        }
                                     ?>
                                         <tr>
-                                            <td><?= strtoupper($row['invoice_id']) ?></td>
+                                            <td><?= $row['invoice_id'] ?></td>
                                             <td><?= ucwords($row['name']) ?></td>
                                             <td><?= ucwords($row['category_type']) ?></td>
-                                            <td>₱ <?= number_format($row['unit_price'], 2)?></td>
-                                            <td>₱ <?= number_format($row['retail_price'], 2)?></td>
+                                            <td>₱ <?= number_format($row['unit_price'], 2) ?></td>
+                                            <td>₱ <?= number_format($row['retail_price'], 2) ?></td>
                                             <td><?= $row['quantity'] ?></td>
-                                            <td><?= $inventory_type ?></td>
-                                            <td><?= date("M d, Y", strtotime($row['date_created']))?></td>
-                                            <td><span class="badge badge-success">Success</span></td>
+                                            <td><?= date("M d, Y", strtotime($row['date_created'])) ?></td>
+                                            <td><span class="badge badge-success">Active</span></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

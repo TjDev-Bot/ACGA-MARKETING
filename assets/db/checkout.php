@@ -8,14 +8,12 @@
     $total = 0;
     $getCheckout = $conn->query("SELECT * FROM checkout WHERE user_id = '$user_type'");
     while ($rows2 = $getCheckout->fetch_assoc()) {
-        $getproductinfo = $conn->query("SELECT * FROM inventory WHERE id = '$rows2[product_id]'");
+        $getproductinfo = $conn->query("SELECT * FROM branch_inventory WHERE id = '$rows2[product_id]'");
         $rows3 = $getproductinfo->fetch_assoc();
-        $total += $rows3['price'];
+        $total += $rows3['retail_price'];
         
         $rows2['product_info'] = $rows3;
         $data[] = $rows2;
-        // $rows2['product_info'] = $rows3;
-        // $response[] = $rows2;
 
     }
     $response = [

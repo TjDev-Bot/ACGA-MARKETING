@@ -109,30 +109,29 @@ require_once ('components/_head.php');
                                 </thead>
                                 <tbody id="orderTable">
                                     <?php
-                                    $query = $conn->query("SELECT * FROM sales ORDER BY id DESC");
-                                    // $checkout_ids = [];
-                                    // $totalprice = 0;
-                                    // $total_items = 0;
-                                    // while ($row = $query->fetch_assoc()) {
-                                    //     $checkout_id = $row['checkout_id'];
-                                    //     if (!isset($checkout_ids[$checkout_id])) {
-                                    //         $checkout_ids[$checkout_id] = [
-                                    //             'checkout_id' => $row['checkout_id'],
-                                    //             'total_price' => 0,
-                                    //             'date' => $row['date'],
-                                    //             'invoice_id' => $row['invoice_id'],
-                                    //             'item_count' => 0,
-                                    //         ];
-                                    //     }
-                                    //     $totalprice = $row['quantity'] * $row['price'];
-                                    //     $checkout_ids[$checkout_id]['total_price'] += $totalprice;
-                                    //     $checkout_ids[$checkout_id]['item_count'] += $row['quantity'];
-                                    // }
+                                    $query = $conn->query("SELECT * FROM ordered_items ORDER BY id DESC");
+                                    $checkout_ids = [];
+                                    $totalprice = 0;
+                                    $total_items = 0;
+                                    while ($row = $query->fetch_assoc()) {
+                                        $checkout_id = $row['checkout_id'];
+                                        if (!isset($checkout_ids[$checkout_id])) {
+                                            $checkout_ids[$checkout_id] = [
+                                                'checkout_id' => $row['checkout_id'],
+                                                'total_price' => 0,
+                                                'date' => $row['date'],
+                                                'item_count' => 0,
+                                            ];
+                                        }
+                                        $totalprice = $row['quantity'] * $row['price'];
+                                        $checkout_ids[$checkout_id]['total_price'] += $totalprice;
+                                        $checkout_ids[$checkout_id]['item_count'] += $row['quantity'];
+                                    }
 
-                                    // //   print_r($checkout_ids);
-                                    // foreach ($checkout_ids as $checkout_id => $data) {
+                                    //   print_r($checkout_ids);
+                                    foreach ($checkout_ids as $checkout_id => $data) {
                                         ?>
-                                        <!-- <tr>
+                                        <tr>
                                             <td></td>
                                             <td><?= $data['checkout_id'] ?></td>
                                             <td><?= $data['item_count'] ?></td>
@@ -144,7 +143,8 @@ require_once ('components/_head.php');
                                                     class='btn btn-sm btn-info check_order'>Check</button>
                                             </td>
                                             <td></td>
-                                        </tr> -->
+                                        </tr>
+                                        <?php } ?>
                                 </tbody>
                             </table>
                         </div>

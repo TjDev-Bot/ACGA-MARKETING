@@ -43,12 +43,12 @@ $(function () {
       },
       dataType: "json",
       success: function (response) {
-        // console.log(order_id);
+        // console.log(response);
         $("#checkoutUID").val(order_id);
         var table = $("#ordered_items").empty();
         $.each(response, function (index, row) {
           // var price = convertToMoney(parseInt(row.price));
-          var price = parseInt(row.price);
+          var price = parseInt(row.unit_price);
           var quantity = parseInt(row.quantity);
           var totalPrice = price * quantity;
           var tr = "<tr>";

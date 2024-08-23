@@ -10,8 +10,9 @@ $(function () {
       dataType: "json",
       success: function (response) {
         var table = $("#ordered_items").empty();
+        console.log(response);
         $.each(response, function (index, row) {
-          var price = parseInt(row.price);
+          var price = parseInt(row.unit_price);
           var quantity = parseInt(row.quantity);
           var totalPrice = price * quantity;
           var invoice_id = row.invoice_id.toUpperCase();

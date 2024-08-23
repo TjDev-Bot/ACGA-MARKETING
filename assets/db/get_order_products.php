@@ -4,8 +4,8 @@
 
     $order_id = $_GET['orderID'];
     $items = [];
-    $query = $conn->query("SELECT inventory.invoice_id, inventory.name, inventory.price, held_orders.quantity 
-    FROM held_orders INNER JOIN inventory ON held_orders.product_id = inventory.id WHERE held_orders.checkout_id = $order_id");
+    $query = $conn->query("SELECT branch_inventory.invoice_id, branch_inventory.name, branch_inventory.unit_price, held_orders.quantity 
+    FROM held_orders INNER JOIN branch_inventory ON held_orders.product_id = branch_inventory.id WHERE held_orders.checkout_id = $order_id");
     while($row = $query->fetch_assoc()){
         $items[] = $row;
     }

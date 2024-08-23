@@ -90,25 +90,6 @@ CREATE TABLE `ordered_items` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `sales`
---
-
-CREATE TABLE `sales` (
-  `id` int(11) NOT NULL,
-  `inventory_type` int(255) NOT NULL,
-  `invoice_id` varchar(255) NOT NULL,
-  `category_type` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `quantity` bigint(255) NOT NULL,
-  `unit_price` bigint(255) NOT NULL,
-  `retail_price` bigint(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `date_updated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -215,8 +196,6 @@ ALTER TABLE `ordered_items`
 --
 -- Indexes for table `sales`
 --
-ALTER TABLE `sales`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `staffs`
@@ -244,7 +223,7 @@ ALTER TABLE `warehouse_inventory`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `checkout`
@@ -267,8 +246,6 @@ ALTER TABLE `ordered_items`
 --
 -- AUTO_INCREMENT for table `sales`
 --
-ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -280,13 +257,13 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `warehouse_inventory`
 --
 ALTER TABLE `warehouse_inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

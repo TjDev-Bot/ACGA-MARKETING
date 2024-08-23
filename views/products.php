@@ -1,5 +1,4 @@
 <?php
-
 require_once('components/_head.php');
 ?>
 <div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -27,10 +26,14 @@ require_once('components/_head.php');
                     </div>
                     <div class="form-row">
                         <div class="col col-md-6">
-                            <label>Product Price</label>
-                            <input type="number" name="prod_price" id="prodPRICE" class="form-control" value="">
+                            <label>Product Retail Price</label>
+                            <input type="number" name="prod_retail_price" id="prodRetailPRICE" class="form-control" value="">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col col-md-6">
+                            <label>Product Unit Price</label>
+                            <input type="number" name="prod_unit_price" id="prodUnitPRICE" class="form-control" value="">
+                        </div>
+                        <div class="col-md-12">
                             <label>Produce Quantity</label>
                             <input type="number" name="prod_quantity" id="prodQUANTITY" class="form-control" value="">
                         </div>
@@ -78,9 +81,14 @@ require_once('components/_head.php');
                             <label>Branch</label>
                             <select class="form-control" name="stock_branch" id="stockBRANCH" aria-label="Default select example" required>
                                 <option selected hidden disabled>Inventory Type</option>
-                                <option value="1">Hardware Branch</option>
-                                <option value="2">Appliance Branch</option>
-                                <option value="3">Aggriculture Branch</option>
+                                <?php 
+                                    $query = $conn->query('SELECT * FROM branches');
+                                    while ($row = $query->fetch_assoc()) {
+                                        ?>
+                                        <option value="<?= $row['branch_id'] ?>"><?= $row['branch_name'] ?></option>
+                                        <?php
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -123,7 +131,6 @@ require_once('components/_head.php');
                             <div class="row">
                                 <div class="col">
                                     <a href="add_product.php" class="btn btn-warning">
-                                    <!-- <i class="fas fa-items"></i> -->
                                         Add New Product
                                     </a>
                                 </div>
@@ -170,7 +177,6 @@ require_once('components/_head.php');
                                         <th class="text-success" scope="col">Unit Price</th>
                                         <th scope="col">Retail Price</th>
                                         <th class="text-success" scope="col">Quantity</th>
-                                        <th scope="col">Out Branch</th>
                                         <th class="text-success" scope="col">Actions</th>
                                     </tr>
                                 </thead>
