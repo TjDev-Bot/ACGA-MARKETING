@@ -34,7 +34,7 @@ require_once('components/_head.php');
                             <input type="number" name="prod_unit_price" id="prodUnitPRICE" class="form-control" value="">
                         </div>
                         <div class="col-md-12">
-                            <label>Produce Quantity</label>
+                            <label>Product Quantity</label>
                             <input type="number" name="prod_quantity" id="prodQUANTITY" class="form-control" value="">
                         </div>
                     </div>
@@ -140,9 +140,19 @@ require_once('components/_head.php');
                                             Filter By Category
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <button class="dropdown-item" type="button">Action</button>
+                                            <?php 
+                                                if($user_type == 0){
+                                                    $query = $conn->query('SELECT * FROM warehouse_inventory');
+                                                }else{
+                                                    $query = $conn->query('SELECT * FROM branch_inventory');
+                                                }
+                                                while($row = $query->fetch_assoc()){
+                                                    echo "<button class='dropdown-item' type='button'>".ucfirst($row['category_type'])."</button>";
+                                                }
+                                            ?>
+                                            <!-- <button class="dropdown-item" type="button">Action</button>
                                             <button class="dropdown-item" type="button">Another action</button>
-                                            <button class="dropdown-item" type="button">Something else here</button>
+                                            <button class="dropdown-item" type="button">Something else here</button> -->
                                         </div>
                                     </div>
                                 </div>

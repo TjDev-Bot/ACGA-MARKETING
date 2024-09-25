@@ -32,6 +32,7 @@ $(function () {
     type: "GET",
     success: function (data) {
       $("#productTable").html(data);
+      // console.log(data);
     },
   });
 

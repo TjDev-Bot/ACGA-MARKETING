@@ -67,6 +67,7 @@ require_once('components/_head.php');
                                         } else {
                                             $image = '../images/products/' . $rows['image'];
                                         }
+                                        if($rows['quantity'] != 0){
                                     ?>
                                         <div class="col col-sm-3">
                                             <div class="p-3 card shadow">
@@ -78,7 +79,9 @@ require_once('components/_head.php');
                                                 <button class="btn btn-primary btn-sm addCheckoutProduct" data-target-product-id="<?= $rows['id']; ?>">+ ADD</button>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                    <?php 
+
+                                    }} ?>
                                 </div>
                             </div>
                         </div>

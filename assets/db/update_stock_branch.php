@@ -11,17 +11,20 @@ $getquantity = $conn->query("SELECT quantity, invoice_id FROM warehouse_inventor
 $getquantity = $getquantity->fetch_assoc();
 $status = '';
 $invoice_id = $getquantity['invoice_id'];
-$branch = $conn->query("SELECT * FROM branch_inventory WHERE invoice_id = '$invoice_id'");
-// $rowBranch = $branch->num_rows;
+$branch = $conn->query("SELECT * FROM branch_inventory WHERE invoice_id = '$invoice_id' AND inventory_type = '$stock_branch'");
+$rowBranch = $branch->num_rows;
 
 if (intval($stock_quantity) > intval($getquantity['quantity'])) {
     $status = 'over_limit';
 }else {
+    $conn->query("INSERT INTO out_inventory (branch_id, stock_id, quantity, date_created)
+        VALUES ('$stock_branch', '$stock_id', '$stock_quantity', NOW())");
+        
     if($branch->num_rows > 0) {
-        $conn->query("UPDATE warehouse_inventory SET quantity = quantity - '$stock_quantity', out_branch = '$stock_branch'  WHERE id = '$stock_id'");
+        $conn->query("UPDATE warehouse_inventory SET quantity = quantity - '$stock_quantity' WHERE id = '$stock_id'");
         $conn->query("UPDATE branch_inventory SET quantity = quantity + '$stock_quantity' WHERE invoice_id = '$invoice_id' AND inventory_type = '$stock_branch'");
     }else{
-        $conn->query("UPDATE warehouse_inventory SET quantity = quantity - $stock_quantity, out_branch = $stock_branch  WHERE id = $stock_id");
+        $conn->query("UPDATE warehouse_inventory SET quantity = quantity - $stock_quantity WHERE id = $stock_id");
         $stmt = $conn->prepare("INSERT INTO branch_inventory (inventory_type, invoice_id, category_type, image, name, quantity, unit_price, retail_price, description)
         SELECT ?, invoice_id, category_type, image, name, ?, unit_price, retail_price, description
         FROM warehouse_inventory 

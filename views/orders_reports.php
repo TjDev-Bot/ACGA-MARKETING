@@ -1,10 +1,9 @@
 <?php
-
-require_once ('components/_head.php');
+require_once('components/_head.php');
 ?>
 <div class="modal fade" id="checkOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Check Order</h5>
@@ -20,6 +19,8 @@ require_once ('components/_head.php');
                                 <th scope="col">Product Code</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Quantity</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Selling Price</th>
                                 <th scope="col">Price</th>
                             </tr>
                         </thead>
@@ -40,20 +41,31 @@ require_once ('components/_head.php');
 <body>
     <!-- Sidenav -->
     <?php
-    require_once ('components/_sidebar.php');
+    require_once('components/_sidebar.php');
     ?>
     <!-- Main content -->
     <div class="main-content">
         <!-- Top navbar -->
         <?php
-        require_once ('components/_topnav.php');
+        require_once('components/_topnav.php');
         ?>
         <!-- Header -->
         <div style="background-image: url(assets/img/theme/ag.jpg); background-size: cover;"
-            class="header  pb-8 pt-5 pt-md-8">
+            class="header pb-8 pt-5 pt-md-8">
             <span class="mask bg-gradient-dark opacity-5"></span>
             <div class="container-fluid">
                 <div class="header-body">
+                    <div class="row justify-content-end">
+                        <!-- <div class="col d-flex p-2">
+                            <b>Order Reports...</b>
+                        </div> -->
+
+                        <div class="col d-flex col-sm-auto">
+                            <div class="input-group input-group-md mb-3">
+                                <button class="btn btn-md btn-warning" id="generate_report" type="button">Generate Report</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,7 +80,7 @@ require_once ('components/_head.php');
                                 <div class="col d-flex p-2">
                                     <b>Order Reports...</b>
                                 </div>
-                                
+
                                 <div class="col col-sm-auto">
                                     <div class="d-flex align-items-center mb-2">
                                         <label class="p-2 me-2">From: </label>
@@ -95,7 +107,7 @@ require_once ('components/_head.php');
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                            <table class="table align-items-center table-hover table-flush">
                                 <thead class="thead-light">
                                     <tr>
                                         <th></th>
@@ -118,20 +130,20 @@ require_once ('components/_head.php');
                                         if (!isset($checkout_ids[$checkout_id])) {
                                             $checkout_ids[$checkout_id] = [
                                                 'checkout_id' => $row['checkout_id'],
-                                                'total_price' => 0,
+                                                'total_price' => $row['price'],
                                                 'date' => $row['date'],
                                                 'item_count' => 0,
                                             ];
                                         }
-                                        $totalprice = $row['quantity'] * $row['price'];
-                                        $checkout_ids[$checkout_id]['total_price'] += $totalprice;
+                                        // $totalprice = $row['quantity'] * $row['price'];
+                                        // $checkout_ids[$checkout_id]['total_price'] += $totalprice;
                                         $checkout_ids[$checkout_id]['item_count'] += $row['quantity'];
                                     }
 
                                     //   print_r($checkout_ids);
                                     foreach ($checkout_ids as $checkout_id => $data) {
-                                        ?>
-                                        <tr>
+                                    ?>
+                                        <tr data-date-time="<?= date("Y-m-d", strtotime($data['date'])) ?>">
                                             <td></td>
                                             <td><?= $data['checkout_id'] ?></td>
                                             <td><?= $data['item_count'] ?></td>
@@ -144,7 +156,7 @@ require_once ('components/_head.php');
                                             </td>
                                             <td></td>
                                         </tr>
-                                        <?php } ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -153,13 +165,13 @@ require_once ('components/_head.php');
             </div>
             <!-- Footer -->
             <?php
-            require_once ('components/_footer.php');
+            require_once('components/_footer.php');
             ?>
         </div>
     </div>
     <!-- Argon Scripts -->
     <?php
-    require_once ('components/_scripts.php');
+    require_once('components/_scripts.php');
     ?>
 </body>
 

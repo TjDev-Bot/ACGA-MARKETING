@@ -50,7 +50,16 @@ require_once('components/_head.php');
                                 <tbody>
                                     <?php
                                     $query = $conn->query("SELECT * FROM branch_inventory ORDER BY id DESC");
-                                    while ($row = $query->fetch_assoc()) {
+                                    $query2 = $conn->query("SELECT * FROM archived_product ORDER BY id DESC");
+                                    $data = [];
+                                    while ($rows = $query->fetch_assoc()) {
+                                        $data[] = $rows;
+                                    }
+                                    while ($row2 = $query2->fetch_assoc()) {
+                                        $data[$rows] = $row2;
+                                    }
+
+                                    foreach ($data as $row) {
                                         switch($row['inventory_type']){
                                             case 1:
                                                 $inventory_type = "Hardware Branch";
@@ -72,7 +81,7 @@ require_once('components/_head.php');
                                             <td><?= $row['quantity'] ?></td>
                                             <td><?= $inventory_type ?></td>
                                             <td><?= date("M d, Y", strtotime($row['date_created']))?></td>
-                                            <td><span class="badge badge-success">Success</span></td>
+                                            <td><?= $row['quantity'] ? '<span class="badge badge-success">Paid</span>' : '<span class="badge badge-danger">Archived</span>'?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

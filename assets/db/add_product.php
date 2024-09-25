@@ -18,9 +18,10 @@
     $response = [];
 
     if($_SESSION['user_id'] == 1){
+        
         $SELECT = "SELECT id From warehouse_inventory Where id = ? Limit 1";
-        $INSERT = "INSERT INTO warehouse_inventory (out_branch, name, invoice_id, category_type, image, quantity, unit_price, retail_price, description, date_updated) 
-           VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+        $INSERT = "INSERT INTO warehouse_inventory (name, invoice_id, category_type, image, quantity, unit_price, retail_price, description, date_updated) 
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) 
            ON DUPLICATE KEY UPDATE invoice_id = invoice_id";
     }else{
         $SELECT = "SELECT id From branch_inventory Where id = ? Limit 1";

@@ -48,11 +48,13 @@ require_once('components/_head.php');
                                     <?php
                                     $query = $conn->query("SELECT * FROM branches");
                                     while ($row = $query->fetch_assoc()) {
+                                        $branchItems = $conn->query("SELECT * FROM branch_inventory WHERE inventory_type = $row[branch_id]");
+                                        $branchItemsCount = $branchItems->num_rows;
                                     ?>
                                         <tr>
                                             <td></td>
                                             <td><?= $row['branch_name'] ?></td>
-                                            <td>0</td>
+                                            <td><?=$branchItemsCount?></td>
                                             <td><a href="specific_inventory.php?branch=<?=$row['branch_id']?>" class="btn btn-sm btn-info">Go To</a></td>
                                             <td></td>
                                         </tr>
