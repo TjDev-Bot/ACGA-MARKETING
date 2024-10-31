@@ -3,6 +3,7 @@ include("config.php");
 session_start();
 
 $stock_id = $_POST['stock_id'];
+$branch_name = $_POST['branch_name'];
 $stock_quantity = $_POST['stock_quantity'];
 $stock_branch = $_POST['stock_branch'];
 $date = date("Y-m-d H:i:s");
@@ -17,8 +18,8 @@ $rowBranch = $branch->num_rows;
 if (intval($stock_quantity) > intval($getquantity['quantity'])) {
     $status = 'over_limit';
 }else {
-    $conn->query("INSERT INTO out_inventory (branch_id, stock_id, quantity, date_created)
-        VALUES ('$stock_branch', '$stock_id', '$stock_quantity', NOW())");
+    $conn->query("INSERT INTO out_inventory (branch_id, branch_name, stock_id, quantity, date_created)
+        VALUES ('$stock_branch', '$branch_name', '$stock_id', '$stock_quantity', NOW())");
         
     if($branch->num_rows > 0) {
         $conn->query("UPDATE warehouse_inventory SET quantity = quantity - '$stock_quantity' WHERE id = '$stock_id'");

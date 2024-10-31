@@ -78,7 +78,7 @@ require_once('components/_head.php');
                             <input type="number" name="stock_quantity" id="stockQUANTITY" class="form-control" value="" required>
                         </div>
                         <div class="col col-md-6">
-                            <label>Branch</label>
+                            <label>Type of Branch</label>
                             <select class="form-control" name="stock_branch" id="stockBRANCH" aria-label="Default select example" required>
                                 <option selected hidden disabled>Inventory Type</option>
                                 <?php 
@@ -86,6 +86,20 @@ require_once('components/_head.php');
                                     while ($row = $query->fetch_assoc()) {
                                         ?>
                                         <option value="<?= $row['branch_id'] ?>"><?= $row['branch_name'] ?></option>
+                                        <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col col-md-12">
+                            <label>Branch Name</label>
+                            <select class="form-control" name="branch_name" id="branchNameStock" aria-label="Default select example" required>
+                                <option selected hidden disabled>Branch Name</option>
+                                <?php 
+                                    $query = $conn->query('SELECT * FROM branch_name');
+                                    while ($row = $query->fetch_assoc()) {
+                                        ?>
+                                        <option value="<?= $row['id'] ?>"><?= ucwords($row['branch_name']) ?></option>
                                         <?php
                                     }
                                 ?>
