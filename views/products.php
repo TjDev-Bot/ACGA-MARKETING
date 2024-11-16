@@ -84,9 +84,9 @@ require_once('components/_head.php');
                                 <?php 
                                     $query = $conn->query('SELECT * FROM branches');
                                     while ($row = $query->fetch_assoc()) {
-                                        ?>
-                                        <option value="<?= $row['branch_id'] ?>"><?= $row['branch_name'] ?></option>
-                                        <?php
+                                ?>
+                                    <option value="<?= $row['branch_id'] ?>"><?= $row['branch_name'] ?></option>
+                                <?php
                                     }
                                 ?>
                             </select>
@@ -96,15 +96,15 @@ require_once('components/_head.php');
                             <select class="form-control" name="branch_name" id="branchNameStock" aria-label="Default select example" required>
                                 <option selected hidden disabled>Branch Name</option>
                                 <?php 
-                                    $query = $conn->query('SELECT * FROM branch_name');
-                                    while ($row = $query->fetch_assoc()) {
+                                    $querys = $conn->query('SELECT * FROM branch_name');
+                                    while ($rows = $querys->fetch_assoc()) {
                                         ?>
-                                        <option value="<?= $row['id'] ?>"><?= ucwords($row['branch_name']) ?></option>
+                                        <option data-branch-id="<?=$rows['branch_id']?>" value="<?= $rows['id'] ?>"><?= ucwords($rows['branch_name']) ?></option>
                                         <?php
                                     }
                                 ?>
                             </select>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -220,10 +220,31 @@ require_once('components/_head.php');
         </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            $('#stockBRANCH').change(function() {
+                var selectedBranchId = $(this).val()
+                if (!selectedBranchId) {
+                    $('#branchNameStock option').show();
+                } else {
+                    $('#branchNameStock option').each(function() {
+                        if ($(this).data('branch-id') == selectedBranchId) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                }
+                $('#branchNameStock').val('');
+                $('#branchNameStock option:first').show();
+            });
+        });
+    </script>
     <!-- Argon Scripts -->
     <?php
     require_once('components/_scripts.php');
     ?>
+
 </body>
 
 </html>

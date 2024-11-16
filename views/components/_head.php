@@ -24,6 +24,7 @@
     <link type="text/css" href="assets/css/argon.css?v=1.0.0" rel="stylesheet">
     <link type="text/css" href="assets/css/main.css" rel="stylesheet">
     <script src="assets/js/swal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!--Load Swal-->
     <?php if (isset($success)) { ?>
         <!--This code for injecting success alert-->
@@ -60,13 +61,14 @@
         session_start();
         $user_type = $_SESSION['user_type'];
         $user_id = $_SESSION['user_id'];
+        $branch_type = $_SESSION['branch_type'];
         $username = "";
         
         if($user_id != 1){
             $query = $conn->query("SELECT * FROM users INNER JOIN staffs ON users.username = staffs.username WHERE users.id = $user_id");
             $row = $query->fetch_assoc();
             $username = $row['name'];
-            $getInventory = $conn->query("SELECT COUNT(id) as inventory_count FROM branch_inventory WHERE inventory_type = $user_type");
+            $getInventory = $conn->query("SELECT COUNT(id) as inventory_count FROM branch_inventory WHERE inventory_type = $user_type AND branch_name = '$branch_type'");
             $fetchInventory = $getInventory->fetch_assoc();
             $getHeldOrders = $conn->query("SELECT COUNT(distinct checkout_id) as held_count FROM held_orders WHERE user_type = $user_type");
             $fetchHeldOrers = $getHeldOrders->fetch_assoc();

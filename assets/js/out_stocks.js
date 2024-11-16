@@ -26,9 +26,10 @@ $("#outSpecificProduct").submit(function (e){
         contentType: false,
         processData: false,
         success: function (data) {
+            console.log(data);
             if (data = "success") {
                 swal("Success", "Stock has been updated", "success").then(() => {
-                    window.location.reload();
+                    // window.location.reload();
                 });
             }else if(data = "over_limit"){
                 swal("Item Cannot be out", "Cannot out more than available quantity", "error").then(() => {

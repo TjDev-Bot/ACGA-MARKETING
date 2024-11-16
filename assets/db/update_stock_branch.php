@@ -26,11 +26,11 @@ if (intval($stock_quantity) > intval($getquantity['quantity'])) {
         $conn->query("UPDATE branch_inventory SET quantity = quantity + '$stock_quantity' WHERE invoice_id = '$invoice_id' AND inventory_type = '$stock_branch'");
     }else{
         $conn->query("UPDATE warehouse_inventory SET quantity = quantity - $stock_quantity WHERE id = $stock_id");
-        $stmt = $conn->prepare("INSERT INTO branch_inventory (inventory_type, invoice_id, category_type, image, name, quantity, unit_price, retail_price, description)
-        SELECT ?, invoice_id, category_type, image, name, ?, unit_price, retail_price, description
+        $stmt = $conn->prepare("INSERT INTO branch_inventory (inventory_type, branch_name, invoice_id, category_type, image, name, quantity, unit_price, retail_price, description)
+        SELECT ?, ?, invoice_id, category_type, image, name, ?, unit_price, retail_price, description
         FROM warehouse_inventory 
         WHERE id = ?");
-        $stmt->bind_param("sss", $stock_branch, $stock_quantity, $stock_id);
+        $stmt->bind_param("ssss", $branch_name, $stock_branch, $stock_quantity, $stock_id);
         $stmt->execute();
         $stmt->close();
     }

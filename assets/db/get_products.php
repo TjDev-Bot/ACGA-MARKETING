@@ -3,6 +3,7 @@ include('config.php');
 session_start();
 $user_id = $_SESSION['user_id'];
 $user_type = $_SESSION['user_type'];
+$branch_type = $_SESSION['branch_type'];
 // if ($user_type == 1) {
 //     $query = "SELECT * FROM inventory ORDER BY date_updated DESC";
 // }else{
@@ -12,7 +13,7 @@ $user_type = $_SESSION['user_type'];
 if($user_id == 1) {
     $query = "SELECT * FROM warehouse_inventory ORDER BY id DESC";
 }else{
-    $query = "SELECT * FROM branch_inventory WHERE inventory_type = '$user_type' ORDER BY id DESC";
+    $query = "SELECT * FROM branch_inventory WHERE inventory_type = '$user_type' AND branch_name     = '$branch_type' ORDER BY id DESC";
 }
 
 $getInv = $conn->query($query);

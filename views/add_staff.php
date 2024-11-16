@@ -46,7 +46,7 @@ require_once('components/_head.php');
                 <div class="form-row">
                   <div class="col-md-3">
                     <label>Staff Type</label>
-                    <select class="form-control" name="staff_type" aria-label="Default select example">
+                    <select class="form-control" id="staffType" name="staff_type" aria-label="Default select example">
                       <option selected hidden>Choose Category</option>
                       <?php
                         $query = $conn->query('SELECT * FROM branches');
@@ -56,6 +56,12 @@ require_once('components/_head.php');
                       <?php
                         }
                       ?>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label>Branch Type</label>
+                    <select class="form-control" id="branchType" name="branch_type" aria-label="Default select example">
+                      <option selected hidden>Choose Branch</option>
                     </select>
                   </div>
                   <div class="col-md-4">
@@ -79,6 +85,29 @@ require_once('components/_head.php');
       </div>
     </div>
   </div>
+  <script>
+    $(document).ready(function() {
+      $('#staffType').change(function(){
+        var staffType = $(this).val();
+        $.ajax({
+          url: '../assets/db/get_branches.php',
+          type: 'GET',
+          dataType: 'json',
+          data: {
+            staffType: staffType
+          },
+          success: function(response){
+            $('#branchType').empty();
+            $.each(response, function(key, value){
+              $('#branchType').append(`
+                <option value="${value.id}">${value.branch_name}</option>
+              `);
+            });
+          }
+        });
+      });
+    });
+  </script>
   <!-- Footer -->
   <?php
   require_once('components/_footer.php');

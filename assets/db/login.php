@@ -10,7 +10,8 @@
 
     $_SESSION['user_type'] = $user['user_type'];
     $_SESSION['user_id'] = $user['id'];
-
+    $_SESSION['branch_type'] = $user['branch_type'];
+    
     if($query){
         if(password_verify($password, $user['password'])){
             if($user['status'] != 'disabled'){
